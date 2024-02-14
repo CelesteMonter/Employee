@@ -41,6 +41,4 @@ public class HelloController {
     protected void clearTextArea() {
         textArea.clear();
     }
-
-
 }
