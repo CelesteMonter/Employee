@@ -1,75 +1,46 @@
 package com.example.javaform;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextArea;
 
 public class HelloController {
-    @FXML
-    private TextField price = new TextField();
-    @FXML
-    private TextField quantity = new TextField();
-    @FXML
-    private TextField total = new TextField();
 
+    InternalEmployee internalEmployee;
+    ExternalEmployee externalEmployee;
     @FXML
-    private TextField discount = new TextField();
+    TextArea textArea = new TextArea();
 
     @FXML
-    private TextField totalToPay = new TextField();
+    protected void getInternalEmployee() {
+        textArea.clear();
+        internalEmployee = new InternalEmployee("Celeste", "Monter", "123", "123-456-678", "ABC");
 
-
-    @FXML
-    private TextField payment = new TextField();
-
-    @FXML
-    private TextField change = new TextField();
-
-    double mPrice;
-    double mQuantity;
-    double mTotal;
-    double mDiscount;
-    double mTotalToPay;
-    double mPayment;
-    double mChange;
-
-    @FXML
-    protected void calculate() {
-        mPrice = Double.parseDouble(price.getText());
-        mQuantity = Double.parseDouble(quantity.getText());
-        mTotal = mPrice * mQuantity;
-        total.setText(Double.toString(mTotal));
-
-        if (mTotal > 200) {
-            mDiscount = mTotal * 0.35;
-            discount.setText(Double.toString(mDiscount));
-        } else {
-            mDiscount = 0;
-            discount.setText(Double.toString(mDiscount));
-        }
-
-        mTotalToPay = mTotal - mDiscount;
-        totalToPay.setText(Double.toString(mTotalToPay));
+        textArea.setText(
+                "Nombre:" + internalEmployee.name + "\n" +
+                        "Apellido:" + internalEmployee.lastname + "\n" +
+                        "ID:" + internalEmployee.id + "\n" +
+                        "Telefono:" + internalEmployee.phone + "\n" +
+                        "Posicion:" + internalEmployee.position
+        );
     }
 
     @FXML
-    protected void processPayment() {
-        mPayment = Double.parseDouble(payment.getText());
-        mChange = mPayment - mTotalToPay;
-
-
-        change.setText(Double.toString(mChange));
+    protected void getExternalEmployee() {
+        textArea.clear();
+        externalEmployee = new ExternalEmployee("Carlos", "Alvarado", "456", "qwerty");
+        textArea.setText(
+                "Nombre:" + externalEmployee.name + "\n" +
+                        "Apellido:" + externalEmployee.lastname + "\n" +
+                        "ID:" + externalEmployee.id + "\n" +
+                        "Company:" + externalEmployee.company + "\n"
+        );
     }
 
     @FXML
-    protected void cleanForm() {
-
-          price.setText("");
-          quantity.setText("");
-          total.setText("");
-          discount.setText("");
-          totalToPay.setText("");
-          payment.setText("");
-          change.setText("");
+    protected void clearTextArea() {
+        textArea.clear();
     }
+
+
 }
